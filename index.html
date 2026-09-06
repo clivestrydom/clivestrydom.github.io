@@ -3,19 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Straydom - Free EPG & Livestream TV Guide</title>
-    <meta name="description" content="Straydom is your home for the Straydom EPG (Electronic Program Guide) and livestream. Access epg.straydom.com and livestream.straydom.com from one easy place.">
-    <meta name="keywords" content="straydom, epg, livestream, tv guide, electronic program guide, streaming, iptv">
-    <meta name="author" content="Straydom">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:title" content="Straydom - EPG & Livestream">
-    <meta property="og:description" content="Your home for the Straydom EPG and livestream services.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://clivestrydom.github.io/">
-
-    <link rel="canonical" href="https://clivestrydom.github.io/">
-
+    <title>Straydom</title>
+    <meta name="robots" content="noindex, nofollow">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -24,17 +13,65 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             padding: 40px 20px;
-            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            width: 100%;
         }
-        h1 { font-size: 3em; margin-bottom: 10px; }
-        h2 { font-size: 1.8em; margin: 40px 0 20px; }
-        p { font-size: 1.1em; margin-bottom: 15px; }
-        .tagline { font-size: 1.3em; opacity: 0.9; margin-bottom: 40px; }
+
+        /* Lock screen */
+        #lock-screen {
+            background: rgba(0,0,0,0.3);
+            padding: 50px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+        }
+        #lock-screen h1 { font-size: 3em; margin-bottom: 10px; }
+        #lock-screen .lock-icon { font-size: 4em; margin-bottom: 20px; }
+        #lock-screen p { font-size: 1.2em; margin-bottom: 30px; opacity: 0.9; }
+        #passcode-input {
+            font-size: 2em;
+            padding: 15px 20px;
+            width: 200px;
+            text-align: center;
+            border: none;
+            border-radius: 12px;
+            letter-spacing: 8px;
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            font-weight: bold;
+        }
+        #passcode-input:focus { outline: 3px solid #ffeb3b; }
+        #submit-btn {
+            display: block;
+            margin: 20px auto 0;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background: #ffeb3b;
+            color: #333;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.15s;
+        }
+        #submit-btn:hover { transform: scale(1.05); }
+        #error-msg {
+            color: #ff6b6b;
+            margin-top: 20px;
+            font-weight: bold;
+            min-height: 24px;
+        }
+
+        /* Content (hidden until unlocked) */
+        #content { display: none; }
+        #content h1 { font-size: 3em; margin-bottom: 10px; }
+        #content .tagline { font-size: 1.3em; opacity: 0.9; margin-bottom: 40px; }
         .links {
             display: flex;
             flex-wrap: wrap;
@@ -58,39 +95,57 @@
         }
         .link-card h3 { font-size: 1.4em; margin-bottom: 8px; }
         .link-card p { font-size: 0.95em; opacity: 0.9; margin: 0; }
-        footer {
-            margin-top: 60px;
-            opacity: 0.7;
-            font-size: 0.9em;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Straydom</h1>
-        <p class="tagline">Your EPG and Livestream hub</p>
 
-        <div class="links">
-            <a href="https://epg.straydom.com" class="link-card">
-                <h3>📺 EPG Guide</h3>
-                <p>Electronic Program Guide<br>epg.straydom.com</p>
-            </a>
-            <a href="https://livestream.straydom.com" class="link-card">
-                <h3>🔴 Livestream</h3>
-                <p>Watch live<br>livestream.straydom.com</p>
-            </a>
+        <div id="lock-screen">
+            <div class="lock-icon">🔒</div>
+            <h1>Straydom</h1>
+            <p>Enter passcode to continue</p>
+            <input type="password" id="passcode-input" maxlength="4" inputmode="numeric" autofocus>
+            <button id="submit-btn" onclick="checkPasscode()">Unlock</button>
+            <div id="error-msg"></div>
         </div>
 
-        <h2>About Straydom</h2>
-        <p>Straydom provides a free Electronic Program Guide (EPG) and livestream service. Whether you're looking for TV schedules or want to watch live content, Straydom is your one-stop hub.</p>
+        <div id="content">
+            <h1>Straydom</h1>
+            <p class="tagline">Welcome!</p>
+            <div class="links">
+                <a href="https://epg.straydom.com" class="link-card">
+                    <h3>📺 EPG Guide</h3>
+                    <p>Electronic Program Guide<br>epg.straydom.com</p>
+                </a>
+            </div>
+        </div>
 
-        <h2>Our Services</h2>
-        <p><strong>EPG (Electronic Program Guide):</strong> A complete schedule of TV programs, available at <a href="https://epg.straydom.com" style="color:#ffeb3b;">epg.straydom.com</a>.</p>
-        <p><strong>Livestream:</strong> Watch live content anytime at <a href="https://livestream.straydom.com" style="color:#ffeb3b;">livestream.straydom.com</a>.</p>
-
-        <footer>
-            <p>&copy; 2026 Straydom · clivestrydom.github.io</p>
-        </footer>
     </div>
+
+    <script>
+        const PASSCODE = "1949";
+
+        function checkPasscode() {
+            const input = document.getElementById("passcode-input").value;
+            const error = document.getElementById("error-msg");
+            if (input === PASSCODE) {
+                document.getElementById("lock-screen").style.display = "none";
+                document.getElementById("content").style.display = "block";
+                sessionStorage.setItem("unlocked", "yes");
+            } else {
+                error.textContent = "Wrong passcode! Try again.";
+                document.getElementById("passcode-input").value = "";
+            }
+        }
+
+        document.getElementById("passcode-input").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") checkPasscode();
+        });
+
+        if (sessionStorage.getItem("unlocked") === "yes") {
+            document.getElementById("lock-screen").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }
+    </script>
 </body>
 </html>
