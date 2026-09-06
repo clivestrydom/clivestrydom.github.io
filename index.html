@@ -2,41 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Straydom EPG</title>
-    <meta http-equiv="refresh" content="2; url=https://epg.straydom.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Straydom - Free EPG & Livestream TV Guide</title>
+    <meta name="description" content="Straydom is your home for the Straydom EPG (Electronic Program Guide) and livestream. Access epg.straydom.com and livestream.straydom.com from one easy place.">
+    <meta name="keywords" content="straydom, epg, livestream, tv guide, electronic program guide, streaming, iptv">
+    <meta name="author" content="Straydom">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Straydom - EPG & Livestream">
+    <meta property="og:description" content="Your home for the Straydom EPG and livestream services.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://clivestrydom.github.io/">
+
+    <link rel="canonical" href="https://clivestrydom.github.io/">
+
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: -apple-system, sans-serif;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
+            padding: 40px 20px;
+            line-height: 1.6;
         }
-        h1 { font-size: 2.5em; margin-bottom: 10px; }
-        p { font-size: 1.2em; }
-        a { color: #fff; text-decoration: underline; }
-        .spinner {
-            margin-top: 20px;
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        h1 { font-size: 3em; margin-bottom: 10px; }
+        h2 { font-size: 1.8em; margin: 40px 0 20px; }
+        p { font-size: 1.1em; margin-bottom: 15px; }
+        .tagline { font-size: 1.3em; opacity: 0.9; margin-bottom: 40px; }
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .link-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px 35px;
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+            min-width: 250px;
+        }
+        .link-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.25);
+        }
+        .link-card h3 { font-size: 1.4em; margin-bottom: 8px; }
+        .link-card p { font-size: 0.95em; opacity: 0.9; margin: 0; }
+        footer {
+            margin-top: 60px;
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to Straydom</h1>
-    <p>Taking you to <strong>epg.straydom.com</strong>...</p>
-    <div class="spinner"></div>
-    <p style="margin-top:30px; font-size:0.9em;">
-        Not going? <a href="https://epg.straydom.com">Click here</a>
-    </p>
+    <div class="container">
+        <h1>Straydom</h1>
+        <p class="tagline">Your EPG and Livestream hub</p>
+
+        <div class="links">
+            <a href="https://epg.straydom.com" class="link-card">
+                <h3>📺 EPG Guide</h3>
+                <p>Electronic Program Guide<br>epg.straydom.com</p>
+            </a>
+            <a href="https://livestream.straydom.com" class="link-card">
+                <h3>🔴 Livestream</h3>
+                <p>Watch live<br>livestream.straydom.com</p>
+            </a>
+        </div>
+
+        <h2>About Straydom</h2>
+        <p>Straydom provides a free Electronic Program Guide (EPG) and livestream service. Whether you're looking for TV schedules or want to watch live content, Straydom is your one-stop hub.</p>
+
+        <h2>Our Services</h2>
+        <p><strong>EPG (Electronic Program Guide):</strong> A complete schedule of TV programs, available at <a href="https://epg.straydom.com" style="color:#ffeb3b;">epg.straydom.com</a>.</p>
+        <p><strong>Livestream:</strong> Watch live content anytime at <a href="https://livestream.straydom.com" style="color:#ffeb3b;">livestream.straydom.com</a>.</p>
+
+        <footer>
+            <p>&copy; 2026 Straydom · clivestrydom.github.io</p>
+        </footer>
+    </div>
 </body>
 </html>
