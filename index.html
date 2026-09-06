@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Straydom EPG</title>
+    <meta http-equiv="refresh" content="2; url=https://epg.straydom.com">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        p { font-size: 1.2em; }
+        a { color: #fff; text-decoration: underline; }
+        .spinner {
+            margin-top: 20px;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Straydom</h1>
+    <p>Taking you to <strong>epg.straydom.com</strong>...</p>
+    <div class="spinner"></div>
+    <p style="margin-top:30px; font-size:0.9em;">
+        Not going? <a href="https://epg.straydom.com">Click here</a>
+    </p>
+</body>
+</html>
